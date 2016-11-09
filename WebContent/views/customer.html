@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<!--  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!--  
+          <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../CSS/Roberto.css" rel="stylesheet">
+-->
+    <link href="../CSS/main.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="../CSS/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="../app/js/angular-animate.min.js"></script>
+    <script src="../app/js/angular-material.min.js"></script>
+<title>Green Coupons</title>
+</head>
+<body ng-app = "customer" ng-controller = "customerController" ng-init="init()">
+    <!--
+<h1> title </h1>
+<h2> {{ userName }} </h2>
+    
+<div class="likes" ng-click=getAllPurchasedCoupons()>AllPurchasedCoupons
+</div>
+ <br />   
+<div class="likes" ng-click=getAllCoupons()>AllCoupons
+</div>    
+
+ <br />    
+ <input type="text" ng-model="price">  
+    
+ <div class="likes" ng-click=getAllPurchasedCouponsByPrice(price)>AllCoupons
+</div>     
+  <br /> 
+<select ng-model="couponType">
+    <option value="FOOD">FOOD
+    <option value="tuts">Tutorials
+    <option value="cars">Cars
+</select>
+ <br />   
+<div class="likes" ng-click=getAllPurchasedCouponsByType(couponType)>AllCoupons
+</div> 
+ <br />   
+  -->  
+<!--    
+ <div ng-repeat="coupon in couponList"  class="col-md-6"> 
+  <div class="thumbnail"> 
+    <img ng-src="../img/{{ coupon.image }}"> 
+    <p class="title">{{ coupon.title }}</p> 
+    <p class="price">{{ coupon.price | currency:" NIS " }}</p> 
+      <p class="date">Effective since: {{ coupon.startDate | date }}</p>
+      <p class="date">Expiry date: {{ coupon.endDate | date }}</p>
+      <p class="message"> {{ coupon.message}}</p>
+      <p class="coupontype">{{ coupon.type }} </p>
+      <p class="date">{{coupon.amount}} </p>
+      <div class="rating">
+        <p class="likes" ng-click=purchaseCoupon(coupon)>Purchase </p>
+    </div>
+    </p> 
+  </div> 
+</div>
+-->
+
+  <!--  <div ng-repeat="coupon in couponList" class="col-md-6">  
+        <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="coupon in couponList">
+        <md-card md-theme="default" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ coupon.title }}</span>
+              <span class="md-subhead">Effective since: {{ coupon.startDate | date }}</span>
+              <span class="md-subhead">Expiry date: {{ coupon.endDate | date }}</span>
+          </md-card-title-text>
+            <md-card-content>
+            <p class="message"> {{ coupon.message}}</p>
+            <p class="coupontype">{{ coupon.type }} </p>
+            </md-card-content>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+                <img ng-src="../img/{{ coupon.image }}"> 
+              </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+      </md-card>
+        </md-content>
+-->
+
+<div layout="row">
+    <div flex=15>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Coupon Type</label>
+            <md-select ng-model="coupType">
+              <md-option ng-repeat="types in couponType" value="{{ types }}">
+                {{ types }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Coupon Max Price</label>
+        <input ng-model="coupPrice">
+          </md-input-container>
+        
+        <md-button class="md-raised md-primary" ng-click=getAllPurchasedCouponsByPrice(coupPrice)>Filter Price</md-button> 
+        <md-button class="md-raised md-primary" ng-click=getAllPurchasedCouponsByType(coupType)>Filter Type</md-button>   
+        <md-button class="md-raised md-primary" ng-click=couponListSwitch()>{{ switchTitle }}</md-button>
+    </div>
+    
+      <md-grid-list
+        md-cols="1" md-cols-sm="3" md-cols-md="3" md-cols-gt-md="2"
+        md-row-height-gt-md="1:1" md-row-height="1:1"
+        md-gutter="8px" md-gutter-gt-sm="4px" flex="85">
+
+    <md-grid-tile ng-repeat="coupon in couponList"
+                  class="ng-scope" >
+        <md-card>
+
+            <md-card-title-media>
+            <div class="md-media-sm card-media">
+                        <img style="max-width: 30%; height: auto;" ng-src="../img/{{ coupon.image }}" class="md-card-image" alt="Washed Out">
+                </div>
+          </md-card-title-media>
+            <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ coupon.title }}</span>
+          </md-card-title-text>
+        </md-card-title>            
+        <md-card-actions layout="row" layout-align="end center">
+            <p class="md-button">{{ coupon.price | currency }}</p>
+            <p class="md-button">{{ coupon.type }}</p>
+          <md-card-icon-actions>
+            <md-button ng-click="popConfirmation($event,coupon)" class="md-fab md-primary" aria-label="Favorite">
+              <md-icon md-svg-icon="../img/icons/coins-on-hand.svg"></md-icon>
+            </md-button>
+          </md-card-icon-actions>
+        </md-card-actions>
+        <md-card-content>
+            <p>Left: {{ coupon.amount }} pcs</p>
+            <p>Effective since: {{ coupon.startDate | date :  "dd.MM.yyyy" }}</p>
+            <p>Expiry date: {{ coupon.endDate | date :  "dd.MM.yyyy" }}</p>
+          <p>
+            {{ coupon.message}}
+          </p>
+        </md-card-content>
+      </md-card>
+    </md-grid-tile>
+  </md-grid-list>
+</div>    
+  
+<md-content id="toast-container"></md-content>
+    
+    <div class="footer">
+      <div class="container">
+        <h2>Not available for iPhone and Android.</h2>
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+      </div>
+    </div>
+
+    <!-- Modules 
+    <script src="../app/app.js"></script>
+    -->
+
+    <!-- Controllers -->
+    <script src="../app/controllers/customerController.js"></script>
+</body>
+</html>

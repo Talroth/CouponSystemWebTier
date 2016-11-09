@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/angular-material.min.css">
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  
+    <script src="../app/js/angular-animate.min.js"></script>
+    <script src="../app/js/angular-material.min.js"></script>
+    <script src="../app/app.js"></script>
+	<title>Insert title here</title>
+</head>
+<body dir="ltr" ng-app = "login" ng-controller = "loginController">
+<p>Coupon System</p>
+<a href="#" ng-click="logout()">Logout</a>
+<div id="chooserContainer">  
+<div id="left" class="userTypeChooser">
+    <p class="userTypeChooser">Admin</p>
+    <img src="" class="userTypeChooser" />
+</div>
+
+<div id="center" class="userTypeChooser">
+    <p class="userTypeChooser">Customer</p>
+    <img src="" class="userTypeChooser" />
+</div>
+
+<div id="right" class="userTypeChooser">
+    <p class="userTypeChooser">Company</p>
+    <img src="" class="userTypeChooser" />
+</div>
+</div>  
+    
+<div>
+<input class="textBox" type="text" />
+
+<input class="textBox" name="txtPassword" type="password" />
+
+<input  id="btnLogin" name="btnLogin" type="button" ng-click = "login()" value="Login"/>
+
+<input  id="btnGetAll" name="btnGetAll" type="button" ng-click = "getCoupon()" value="Show all coupons"/>
+    
+<div ng-click="login()" style="background-color: green;">Div for click</div>    
+</div>
+
+
+<p ng-repeat = "x in couponList">coupon id {{ x.id }}</p>
+
+<div id="footnote">Programmed by Tal Roth for John Bryce final Java project course 822.74 {{ test }}</div>
+<!--
+    <div class="p+" style="width: 33%">
+    <div class="card">
+        <div class="card__img card__img--top">
+            <img src="../img/couponPng.png" style="width: 160px>
+            <span class="fs-headline tc-white-1 display-block">Lorem Ipsum</span>
+        </div>
+ 
+        <div class="p+">
+            <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
+ 
+            <div class="paragraph fs-body-1">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+                </p>
+            </div>
+        </div>
+ 
+        <div class="card__actions">
+            <lx-button lx-color="orange" lx-type="flat">Share</lx-button>
+            <lx-button lx-color="orange" lx-type="flat">Learn more</lx-button>
+        </div>
+    </div>
+</div>
+-->
+<!--
+<md-card md-theme="default" md-theme-watch style="width: 45%">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Card with image</span>
+            <span class="md-subhead">Large</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+                <img src="../img/couponPng.png">
+              </div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button style="width: 33%">Action 1
+            <md-tooltip>
+            Action 1 tooltip
+          </md-tooltip>
+            </md-button>
+          <md-button>Action 2</md-button>
+        </md-card-actions>
+</md-card>
+   --> 
+</body>
+</html>

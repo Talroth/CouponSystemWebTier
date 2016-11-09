@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+
+
+div.userTypeChooser  {
+        display: inline;
+        background-color: powderblue;
+        height: 300px;
+        max-width: 200px;
+        width: 25%;
+        margin: auto;
+        display:block;
+        position: relative;
+        float: left;
+        margin-left: 10%;
+        
+}
+
+p.userTypeChooser  {
+    position:absolute;
+    bottom: 0;
+}
+
+div {
+    display: inline-block;
+    width: 100%;
+}
+
+.textBox {
+    display: list-item;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+
+#chooserContainer {
+    width: 1000px;
+    margin-left: 20px;
+}
+
+#buttonLogin {
+   float: left;
+    width: 400px;
+    margin-left: 200px;
+}
+
