@@ -106,9 +106,8 @@
             <label>Coupon Max Price</label>
         <input ng-model="coupPrice">
           </md-input-container>
-        
-        <md-button class="md-raised md-primary" ng-click=getAllPurchasedCouponsByPrice(coupPrice)>Filter Price</md-button> 
-        <md-button class="md-raised md-primary" ng-click=getAllPurchasedCouponsByType(coupType)>Filter Type</md-button>   
+        <md-button class="md-raised md-primary" ng-disabled="coupPrice.length == null || coupPrice.length == ''" ng-click=getAllPurchasedCouponsByPrice(coupPrice)>Filter Price</md-button> 
+        <md-button class="md-raised md-primary" ng-disabled="coupType.length == null" ng-click=getAllPurchasedCouponsByType(coupType)>Filter Type</md-button>   
         <md-button class="md-raised md-primary" ng-click=couponListSwitch()>{{ switchTitle }}</md-button>
     </div>
     
@@ -123,7 +122,7 @@
 
             <md-card-title-media>
             <div class="md-media-sm card-media">
-                        <img style="max-width: 30%; height: auto;" ng-src="../img/{{ coupon.image }}" class="md-card-image" alt="Washed Out">
+                        <img style="max-width: 30%; height: auto;" ng-src="../img/{{ coupon.image }}" on-error-src="../img/coke.jpg" class="md-card-image" alt="Washed Out">
                 </div>
           </md-card-title-media>
             <md-card-title>
@@ -135,7 +134,7 @@
             <p class="md-button">{{ coupon.price | currency }}</p>
             <p class="md-button">{{ coupon.type }}</p>
           <md-card-icon-actions>
-            <md-button ng-click="popConfirmation($event,coupon)" class="md-fab md-primary" aria-label="Favorite">
+            <md-button ng-click="popConfirmation($event,coupon)" ng-disabled="coupon.amount == 0" class="md-fab md-primary" aria-label="Favorite">
               <md-icon md-svg-icon="../img/icons/coins-on-hand.svg"></md-icon>
             </md-button>
           </md-card-icon-actions>
@@ -155,17 +154,9 @@
   
 <md-content id="toast-container"></md-content>
     
-    <div class="footer">
-      <div class="container">
-        <h2>Not available for iPhone and Android.</h2>
-        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
-        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
-      </div>
-    </div>
 
-    <!-- Modules 
-    <script src="../app/app.js"></script>
-    -->
+
+
 
     <!-- Controllers -->
     <script src="../app/controllers/customerController.js"></script>

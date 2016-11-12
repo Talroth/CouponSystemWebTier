@@ -42,3 +42,36 @@ div {
     margin-left: 200px;
 }
 
+#containAll {
+  display: flex;
+  margin-left: 35%;
+}
+#buttonsDiv {
+  width: 150px;
+  height: 272px;
+}
+#logDetails {
+  flex: 1;
+  max-width: 160px;
+  border-style: solid;
+}
+.userTypes {
+	height: 60px;
+	border-style: solid;
+	height: 33%;
+}
+
+.footer {
+ text-align: center;
+ margin: 80px 0 110px;
+clear: both;  
+}
+
+.footer h2 {
+ font-size: 24px;
+ margin-bottom: 25px;
+}
+
+.footer img {
+   margin: 0 10px;
+}

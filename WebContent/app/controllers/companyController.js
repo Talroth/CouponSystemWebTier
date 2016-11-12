@@ -86,10 +86,10 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	$scope.filterByEndDate = function(endDateFilter) {
 		 $mdDateLocale.formatDateLocal = function(date) {
 			    var day = ((date.getDate())>=10)? (date.getDate()) : '0' + (date.getDate());
-			    var monthIndex = ((date.getMonth()+1)>=10)? (date.getMonth()) : '0' + (date.getMonth()); 
+			    var monthIndex = date.getMonth(); 
 			    var year = date.getFullYear();
-
-			    return year + '-' + (monthIndex + 1) + '-' + day + 'T00:00:00';
+			    monthIndex = (monthIndex + 1 >= 10) ? (monthIndex + 1) : "0" + (monthIndex + 1);
+			    return year + '-' + monthIndex + '-' + day + 'T00:00:00';
 		}; 
 		$scope.getCouponByEndDate($mdDateLocale.formatDateLocal(endDateFilter)).then(function(response) {
 			$scope.couponList = response.data;
@@ -470,10 +470,10 @@ app.config(function($mdDateLocaleProvider) {
 		 			return null;
 		 		}
 		    var day = (date.getDate() >= 10) ? date.getDate() : "0" + date.getDate();
-		    var monthIndex = date.getMonth();
+		    var monthIndex =  date.getMonth();
 		    var year = date.getFullYear();
-
-		    return year + '-' + (monthIndex + 1) + '-' + day;
+		    monthIndex = (monthIndex + 1 >= 10) ? (monthIndex + 1) : "0" + (monthIndex + 1);
+		    return year + '-' + monthIndex + '-' + day;
 	    };
 	})
 	

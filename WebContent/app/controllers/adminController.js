@@ -362,7 +362,7 @@ $scope.getCoupons = function(customer) {
 	    		  }
 	    	  else if (customerOrCompany === 'Company')
 	    		  {
-	    		  	this.plannedRemoveIndividual = "{\"custName\" : \"" + individual.compName + "\", \"password\" : \"" + individual.password + "\", \"email\" : \"" + individual.email + "\", \"id\" : \"" + individual.id.toString() + "\"}";
+	    		  	this.plannedRemoveIndividual = "{\"compName\" : \"" + individual.compName + "\", \"password\" : \"" + individual.password + "\", \"email\" : \"" + individual.email + "\", \"id\" : \"" + individual.id.toString() + "\"}";
 	    		  	removing = $scope.removeCompany;
 	    		  	individualText = individual.compName;
 	    		  }

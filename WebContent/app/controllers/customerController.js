@@ -167,7 +167,8 @@ $scope.popConfirmation = function($event,coupon) {
        	  if (response.data=="ok")
        		  {
        		 console.log("okkkkk");
-       		 $scope.openToast(coupon.title + " was purchased"); 
+       		$mdDialog.hide();
+       		 $scope.purchaseSuccess($event,coupon.title);
        		  }
        	  else
        		  {
@@ -251,6 +252,7 @@ $http({
 
 }).error(function(response) {
      console.log("error occurred."); 
+     $scope.openToast("You must set type");
    });
 }
 
@@ -265,6 +267,9 @@ $http({
 
 }).error(function(response) {
      console.log("error occurred."); 
+
+	 	$scope.openToast("You must set max price");
+
    });
 }
 
@@ -276,7 +281,8 @@ return $http({
     accepts: 'text/plain'
   }).success(function(response) {
      console.log(response); 
-
+     
+     
 }).error(function(response) {
      console.log("error occurred."); 
    });
@@ -297,6 +303,22 @@ $http({
    });
 }
 
+
+$scope.purchaseSuccess = function(ev,couponName) {
+  // Appending dialog to document.body to cover sidenav in docs app
+  // Modal dialogs should fully cover application
+  // to prevent interaction outside of dialog
+  $mdDialog.show(
+    $mdDialog.alert()
+      .parent(angular.element(document.body))
+      .clickOutsideToClose(true)
+      .title('Purchasing was performed successfully')
+      .textContent('Thank you for purchase ' + couponName + ' coupon, we sure you will enjoy')
+      .ok('OK')
+      .targetEvent(ev)
+  );
+};
+
 $scope.errorToast = function() {
 	  $scope.openToast("Problem with the server connection, please try to login again");
 }
@@ -310,4 +332,16 @@ $scope.openToast = function(msg) {
 	  };
 	  
 }]);
+
+app.directive('onErrorSrc', function() {
+    return {
+        link: function(scope, element, attrs) {
+          element.bind('error', function() {
+            if (attrs.src != attrs.onErrorSrc) {
+              attrs.$set('src', attrs.onErrorSrc);
+            }
+          });
+        }
+    }
+});
                                    

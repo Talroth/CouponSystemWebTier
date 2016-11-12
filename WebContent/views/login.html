@@ -12,45 +12,39 @@
   
     <script src="../app/js/angular-animate.min.js"></script>
     <script src="../app/js/angular-material.min.js"></script>
-    <script src="../app/app.js"></script>
+    <script src="../app/login.js"></script>
 	<title>Insert title here</title>
 </head>
 <body dir="ltr" ng-app = "login" ng-controller = "loginController">
 <p>Coupon System</p>
+<div id="containAll">
+<div id="buttonsDiv">
+<div id="admin" class="userTypes" ng-click = "chosenUserType='admin'">Admin</div>
+<div id="customer" class="userTypes" ng-click = "chosenUserType='customer'">Customer</div>
+<div id="company" class="userTypes" ng-click = "chosenUserType='company'">Company</div>
+</div>
+<div id="logDetails">
+<md-content">
+      <md-input-container style="margin-left: 15px;">
+        <label>User name</label>
+        <input ng-model="userName" type="text">
+        </md-input-container>
+        <md-input-container style="margin-left: 15px;">
+        <label>Password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-button style="margin-left: 15px" ng-click = "login()" value="Login" type="submit">Submit</md-button>
+</md-content>
+</div>
+</div>
 <a href="#" ng-click="logout()">Logout</a>
-<div id="chooserContainer">  
-<div id="left" class="userTypeChooser">
-    <p class="userTypeChooser">Admin</p>
-    <img src="" class="userTypeChooser" />
-</div>
 
-<div id="center" class="userTypeChooser">
-    <p class="userTypeChooser">Customer</p>
-    <img src="" class="userTypeChooser" />
-</div>
-
-<div id="right" class="userTypeChooser">
-    <p class="userTypeChooser">Company</p>
-    <img src="" class="userTypeChooser" />
-</div>
-</div>  
-    
-<div>
-<input class="textBox" type="text" />
-
-<input class="textBox" name="txtPassword" type="password" />
-
-<input  id="btnLogin" name="btnLogin" type="button" ng-click = "login()" value="Login"/>
-
-<input  id="btnGetAll" name="btnGetAll" type="button" ng-click = "getCoupon()" value="Show all coupons"/>
-    
-<div ng-click="login()" style="background-color: green;">Div for click</div>    
-</div>
+   
 
 
 <p ng-repeat = "x in couponList">coupon id {{ x.id }}</p>
 
-<div id="footnote">Programmed by Tal Roth for John Bryce final Java project course 822.74 {{ test }}</div>
+
 <!--
     <div class="p+" style="width: 33%">
     <div class="card">
@@ -99,5 +93,13 @@
         </md-card-actions>
 </md-card>
    --> 
+   
+      <div class="footer">
+        <h2>Not available for iPhone and Android.</h2>
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+      </div>   
+      
+      <div id="footnote">Programmed by Tal Roth for John Bryce final Java project course 822.74 {{ test }}</div> 
 </body>
 </html>

@@ -25,7 +25,7 @@
 
 </head>
 <body ng-app="company" ng-controller="companyController" ng-init="init()" style="background-color: #85e085;">
-<h1>{{companyDetails.compName}} - {{companyDetails.email}}</h1>
+<h1>{{companyDetails.compName}} - {{companyDetails.email}} </h1>
 
 <div style="float: left; border-right:solid;">
 <md-input-container class="md-block" flex-gt-sm>
@@ -36,7 +36,7 @@
             </md-select>
             </md-input-container>
             <md-dialog-actions>
-            <md-button  class="md-raised md-primary"  ng-click="filterByCouponType(coupType)">Filter by type</md-button>
+            <md-button  class="md-raised md-primary"  ng-disabled="coupType == null" ng-click="filterByCouponType(coupType)">Filter by type</md-button>
             </md-dialog-actions>
             <md-input-container class="md-block" flex-gt-sm>
             <input type="number" ng-model="minimumPrice" />
@@ -45,13 +45,14 @@
             <input type="number" ng-model="maximumPrice" />
             </md-input-container>
             <md-dialog-actions>
-            <md-button  class="md-raised md-primary"  ng-click="filterByPrice(minimumPrice,maximumPrice)">Filter by price</md-button>
+            <md-button  class="md-raised md-primary"  ng-disabled="(minimumPrice == null) || (maximumPrice == null)" ng-click="filterByPrice(minimumPrice,maximumPrice)">Filter by price</md-button>
             </md-dialog-actions>
             <md-input-container class="md-block" flex-gt-sm>
             <md-datepicker ng-model="endDateFilter"></md-datepicker>
             </md-input-container>
             <md-dialog-actions>
-            <md-button  class="md-raised md-primary"  ng-click="filterByEndDate(endDateFilter)">Filter by end date</md-button>
+            <md-button  class="md-raised md-primary" ng-disabled="endDateFilter == null" ng-click="filterByEndDate(endDateFilter)">Filter by end date</md-button>
+            
             </md-dialog-actions>
 </div>
 <div style="margin-left:250px;">
