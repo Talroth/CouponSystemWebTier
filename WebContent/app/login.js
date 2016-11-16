@@ -7,8 +7,8 @@ app.controller("loginController", ['$scope', '$http', '$window', '$location', fu
 //$scope.password = 'bj';
 //
 $scope.chosenUserType = 'admin';
-$scope.userName = 'admin';
-$scope.password = '1234';
+//$scope.userName = 'admin';
+//$scope.password = '1234';
 
 //$scope.chosenUserType = 'company';
 //$scope.userName = 'McHoland';
@@ -19,9 +19,16 @@ $scope.login = function() {
     	 url: "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/rest/" + $scope.chosenUserType + "Service/login?user=" + $scope.userName + "&password=" + $scope.password,    
         method: 'POST'
     }).success(function(response){
-        $scope.test = response;
-        $window.location.href = "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/views/" + $scope.chosenUserType + ".html";
-        
+        $scope.logStat = response;
+        if (response == 'ok')
+        	{
+        		$window.location.href = "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/views/" + $scope.chosenUserType + ".html";
+        	}
+        else
+        	{
+        	
+        	}
+
     })
         .error(function(response){console.log("error occurred."); 
                                  });

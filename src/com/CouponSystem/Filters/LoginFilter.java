@@ -35,10 +35,6 @@ public class LoginFilter implements Filter
         loginURI[1] = request.getContextPath() + COMPANY_SERVICE_PATH;
         loginURI[2] = request.getContextPath() + ADMIN_SERVICE_PATH;
         
-//        response.addHeader("Access-Control-Allow-Origin", "*");
-//        response.addHeader("Access-Control-Allow-Methods","GET,POST");
-//        response.addHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-//        response.addHeader("Content-Type" , "application/json");
         
         boolean loggedIn = session != null && session.getAttribute(FACADE_ATTRIBUTE) != null;
         
@@ -61,7 +57,6 @@ public class LoginFilter implements Filter
         } 
         else 
         {
-        	//TODO: create login page
         	response.sendRedirect(request.getContextPath() + LOGIN_PAGE);
         }
 		

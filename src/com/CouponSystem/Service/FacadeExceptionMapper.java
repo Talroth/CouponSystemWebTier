@@ -7,6 +7,9 @@ import javax.ws.rs.ext.Provider;
 
 import com.CouponSystem.FacadeException.FacadeException;
 
+// Map the exception to JSON
+
+
 @Provider
 public class FacadeExceptionMapper implements ExceptionMapper<FacadeException> {
 

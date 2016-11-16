@@ -4,10 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!--  
-          <link href="../CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../CSS/Roberto.css" rel="stylesheet">
--->
+
     <link href="../CSS/main.css" rel="stylesheet" /> 
     <link rel="stylesheet" href="../CSS/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
@@ -19,77 +16,7 @@
 <title>Green Coupons</title>
 </head>
 <body ng-app = "customer" ng-controller = "customerController" ng-init="init()">
-    <!--
-<h1> title </h1>
-<h2> {{ userName }} </h2>
-    
-<div class="likes" ng-click=getAllPurchasedCoupons()>AllPurchasedCoupons
-</div>
- <br />   
-<div class="likes" ng-click=getAllCoupons()>AllCoupons
-</div>    
 
- <br />    
- <input type="text" ng-model="price">  
-    
- <div class="likes" ng-click=getAllPurchasedCouponsByPrice(price)>AllCoupons
-</div>     
-  <br /> 
-<select ng-model="couponType">
-    <option value="FOOD">FOOD
-    <option value="tuts">Tutorials
-    <option value="cars">Cars
-</select>
- <br />   
-<div class="likes" ng-click=getAllPurchasedCouponsByType(couponType)>AllCoupons
-</div> 
- <br />   
-  -->  
-<!--    
- <div ng-repeat="coupon in couponList"  class="col-md-6"> 
-  <div class="thumbnail"> 
-    <img ng-src="../img/{{ coupon.image }}"> 
-    <p class="title">{{ coupon.title }}</p> 
-    <p class="price">{{ coupon.price | currency:" NIS " }}</p> 
-      <p class="date">Effective since: {{ coupon.startDate | date }}</p>
-      <p class="date">Expiry date: {{ coupon.endDate | date }}</p>
-      <p class="message"> {{ coupon.message}}</p>
-      <p class="coupontype">{{ coupon.type }} </p>
-      <p class="date">{{coupon.amount}} </p>
-      <div class="rating">
-        <p class="likes" ng-click=purchaseCoupon(coupon)>Purchase </p>
-    </div>
-    </p> 
-  </div> 
-</div>
--->
-
-  <!--  <div ng-repeat="coupon in couponList" class="col-md-6">  
-        <md-content class="md-padding" layout-xs="column" layout="row" ng-repeat="coupon in couponList">
-        <md-card md-theme="default" md-theme-watch>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{ coupon.title }}</span>
-              <span class="md-subhead">Effective since: {{ coupon.startDate | date }}</span>
-              <span class="md-subhead">Expiry date: {{ coupon.endDate | date }}</span>
-          </md-card-title-text>
-            <md-card-content>
-            <p class="message"> {{ coupon.message}}</p>
-            <p class="coupontype">{{ coupon.type }} </p>
-            </md-card-content>
-          <md-card-title-media>
-            <div class="md-media-lg card-media">
-                <img ng-src="../img/{{ coupon.image }}"> 
-              </div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-      </md-card>
-        </md-content>
--->
 
 <div layout="row">
     <div flex=15>

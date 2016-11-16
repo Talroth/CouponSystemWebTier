@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.xml.ws.http.HTTPException;
 
 import com.CouponSystem.Beans.Coupon;
 import com.CouponSystem.Beans.CouponType;
@@ -28,7 +29,6 @@ public class CustomerService  {
 
 	@Context
 	private HttpServletRequest request;
-	//private HttpServletResponse response;
 	private CouponSystem mainSystem = CouponSystem.getInstance();
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
 	private static final String USER_NAME  = "userName";
@@ -103,7 +103,6 @@ public class CustomerService  {
 			if (customerFacade != null)
 			{
 				HttpSession session = request.getSession();
-				//TODO: check if new ?
 				session.setAttribute(FACADE_ATTRIBUTE, customerFacade);
 				session.setAttribute(USER_NAME, name);
 				return "ok";		
@@ -149,10 +148,23 @@ public class CustomerService  {
 	@Path("/logout")
 	public String logout()
 	{
-		//TODO: in case of failure add catch
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "ok";
+		try
+		{
+			HttpSession session = request.getSession();
+			if (session != null)
+			{
+				session.invalidate();
+				return "ok";
+			}
+			else
+			{
+				return "User connection was not found";
+			}
+		}
+		catch (HTTPException e)
+		{
+			return "User connection was not found";
+		}
 	}
 	
 	private CustomerFacade getFacade() throws FacadeException

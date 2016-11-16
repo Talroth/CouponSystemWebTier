@@ -3,7 +3,6 @@ package com.CouponSystem.Service;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,6 +16,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.xml.ws.http.HTTPException;
+
 import com.CouponSystem.Beans.Company;
 import com.CouponSystem.Beans.Coupon;
 import com.CouponSystem.Beans.Customer;
@@ -32,7 +33,6 @@ public class AdminService
 {
 	@Context
 	private HttpServletRequest request;
-	//private HttpServletResponse response;
 	private CouponSystem mainSystem = CouponSystem.getInstance();
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
 
@@ -52,8 +52,6 @@ public class AdminService
 		} 
 		catch (FacadeException e) 
 		{
-			System.out.println("Exception was raised");
-			System.out.println("** " + e.getMessage());
 			throw e;
 		}
 	}
@@ -163,7 +161,6 @@ public class AdminService
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateCompany(Company company) throws FacadeException {
 
-		//Company company = adminFacade.getCompany(companyId);
 		try 
 		{
 			getFacade().updateCompany(company);
@@ -253,10 +250,25 @@ public class AdminService
 	@Path("/logout")
 	public String logout()
 	{
-		//TODO: in case of failure add catch
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "ok";
+
+		try
+		{
+			HttpSession session = request.getSession();
+			if (session != null)
+			{
+				session.invalidate();
+				return "ok";
+			}
+			else
+			{
+				return "User connection was not found";
+			}
+		}
+		catch (HTTPException e)
+		{
+			return "User connection was not found";
+		}
+				
 	}
 	
 	private AdminFacade getFacade() throws FacadeException

@@ -11,6 +11,11 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 //		      $scope.myDate.getDate());
 	
 	
+	$scope.connErro = function()
+	{
+		$scope.openToast("Connection issue, please try to login again (your last action was aborted).");
+	}
+	
     $scope.upload = function (file) {
     	$scope.newImage = file.name;
         Upload.upload({
@@ -20,7 +25,9 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
             console.log(file);
         }, function (resp) {
+        	$scope.connErro();
             console.log('Error status: ' + resp.status);
+     //       $scope.openToast("Fail to upload image");
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -121,7 +128,8 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 
 		}).error(function(response) {
 		     console.log("error occurred."); 
-		     $scope.openToast(response.message)
+		     $scope.connErro();
+//		     $scope.openToast(response.message)
 		   });
 		}
 	
@@ -137,6 +145,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 			     console.log(response);
 
 			}).error(function(response) {
+				$scope.connErro();
 			     console.log("error occurred."); 
 			   });	
 	}
@@ -152,6 +161,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 		     console.log(response);
 
 		}).error(function(response) {
+			$scope.connErro();
 		     console.log("error occurred."); 
 		   });
 		}
@@ -189,9 +199,8 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 
 		}).error(function(response) {
 		     console.log("error occurred."); 
-		     console.log(response);
-		     $scope.openToast(response.message)
-		     $scope.response = response;
+		     $scope.connErro();
+
 		   });   
 		 
 		}
@@ -211,6 +220,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 		     console.log(coupon); 
 
 		}).error(function(response) {
+			$scope.connErro();
 		     console.log("error occurred."); 
 		     console.log(response);
 		   });   
@@ -228,6 +238,8 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 			     console.log(response);
 
 			}).error(function(response) {
+				$scope.connErro();
+
 			     console.log("error occurred."); 
 			   });
 	}
@@ -243,6 +255,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 			     console.log(response);
 
 			}).error(function(response) {
+				$scope.connErro();
 			     console.log("error occurred."); 
 			   });
 	}
@@ -258,6 +271,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 			     console.log(response);
 
 			}).error(function(response) {
+				$scope.connErro();
 			     console.log("error occurred."); 
 			   });
 	}
@@ -446,8 +460,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 			    		  }
 			    	  else
 			    		  {
-			    		  console.log(response.data.data);
-			    		  $scope.openToast(response.data.data);
+			    		  $scope.openToast("Error in trying remove coupon");
 			    		  }
 		       },function(error) {
 		    	   console.log(response.data.data);

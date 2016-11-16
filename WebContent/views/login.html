@@ -15,16 +15,50 @@
     <script src="../app/login.js"></script>
 	<title>Insert title here</title>
 </head>
-<body dir="ltr" ng-app = "login" ng-controller = "loginController">
+<body dir="ltr" ng-app = "login" ng-controller = "loginController" ng-init="customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};">
 <p>Coupon System</p>
-<div id="containAll">
-<div id="buttonsDiv">
-<div id="admin" class="userTypes" ng-click = "chosenUserType='admin'">Admin</div>
-<div id="customer" class="userTypes" ng-click = "chosenUserType='customer'">Customer</div>
-<div id="company" class="userTypes" ng-click = "chosenUserType='company'">Company</div>
+
+<div flex-xs flex-gt-xs="50" layout="row" id="containAll">
+<div id="buttonsDiv" flex-xs flex-gt-xs="50" layout="column">
+<div id="admin">
+ <md-card>
+        <md-card-header>
+          <md-card-avatar>
+           <img class="md-user-avatar" src="../img/coke.jpg" ng-click = "chosenUserType='admin'; adminStyle={'opacity':1}; customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};" ng-style="adminStyle"/>        
+          </md-card-avatar>
+           <md-card-header-text>
+            <span class="md-title">Admin</span>
+          </md-card-header-text>
+        </md-card-header>
+ </md-card>  
+ </div>
+<div>
+ <md-card>
+        <md-card-header>
+          <md-card-avatar>
+           <img class="md-user-avatar" src="../img/hotel.jpg"  ng-click = "chosenUserType='customer'; adminStyle={'opacity':0.5}; customerStyle={'opacity':1}; companyStyle={'opacity':0.5};" ng-style="customerStyle"/>        
+          </md-card-avatar>
+           <md-card-header-text>
+            <span class="md-title">Customer</span>
+          </md-card-header-text>
+        </md-card-header>
+ </md-card>  
+ </div>
+<div>
+ <md-card>
+        <md-card-header>
+          <md-card-avatar>
+           <img class="md-user-avatar" src="../img/flu.jpg" ng-click = "chosenUserType='company'; adminStyle={'opacity':0.5}; customerStyle={'opacity':0.5}; companyStyle={'opacity':1};" ng-style="companyStyle"/>        
+          </md-card-avatar>
+           <md-card-header-text>
+            <span class="md-title">Company</span>
+          </md-card-header-text>
+        </md-card-header>
+ </md-card> 
+ </div>
 </div>
-<div id="logDetails">
-<md-content">
+<div>
+<md-content>
       <md-input-container style="margin-left: 15px;">
         <label>User name</label>
         <input ng-model="userName" type="text">
@@ -33,8 +67,12 @@
         <label>Password</label>
         <input ng-model="password" type="password">
       </md-input-container>
+      
+      <md-card-actions layout="row" layout-align="end center">
+      {{ logStat }}
       <md-button style="margin-left: 15px" ng-click = "login()" value="Login" type="submit">Submit</md-button>
-</md-content>
+      </md-card-actions>
+</md-content> 
 </div>
 </div>
 <a href="#" ng-click="logout()">Logout</a>
@@ -100,6 +138,6 @@
         <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
       </div>   
       
-      <div id="footnote">Programmed by Tal Roth for John Bryce final Java project course 822.74 {{ test }}</div> 
+      <div id="footnote">Programmed by Tal Roth for John Bryce final Java project course 822.74</div> 
 </body>
 </html>
