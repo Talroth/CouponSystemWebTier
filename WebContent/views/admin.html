@@ -20,7 +20,18 @@
 <script src="../app/js/myComponent.js"></script>
 </head>
 <body ng-app="admin" ng-controller="adminController" ng-init="init()" style="background-color: #85e085;">
-
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+          <md-icon md-svg-icon="../img/icons/configuration.svg"></md-icon>
+        <h2>
+          <span>Admin screen</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button">
+          <md-icon md-svg-icon="../img/icons/exit.svg" ></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 	<md-button class="md-raised md-primary" ng-click="showCoupons=false; custTbl=true; compTbl=false; getAllCustomer()">Customers</md-button>
 	<md-button class="md-raised md-primary" ng-click="showCoupons=false; custTbl=false; compTbl=true; getAllCompanies()">Companies</md-button>
 	<md-input-container ng-show=custTbl class="md-block" flex-gt-sm>

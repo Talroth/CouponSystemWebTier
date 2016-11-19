@@ -16,9 +16,9 @@
 	<title>Insert title here</title>
 </head>
 <body dir="ltr" ng-app = "login" ng-controller = "loginController" ng-init="customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};">
-<p>Coupon System</p>
 
-<div flex-xs flex-gt-xs="50" layout="row" id="containAll">
+<img flex-xs flex-gt-xs="50" layout="column" src="../img/coollogo_com-284901049.png" style="margin-left : 543px"/>
+<div flex-xs flex-gt-xs="50" layout="row" id="containAll" style="max-width : 700px;">
 <div id="buttonsDiv" flex-xs flex-gt-xs="50" layout="column">
 <div id="admin">
  <md-card>
@@ -57,9 +57,9 @@
  </md-card> 
  </div>
 </div>
-<div>
-<md-content>
-      <md-input-container style="margin-left: 15px;">
+<div id="loginDetails" style="max-width : 350px;">
+<md-content >
+      <md-input-container  style="margin-left: 15px;" >
         <label>User name</label>
         <input ng-model="userName" type="text">
         </md-input-container>
