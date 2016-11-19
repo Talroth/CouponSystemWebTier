@@ -6,22 +6,23 @@ import com.CouponSystem.Beans.Income;
 
 public class BuisnessDelegate {
 	
-	public void storeIncome(Income income)
+	public synchronized void storeIncome(Income income)
 	{
 		
 	}
 	
-	public void viewIncomeByCompany(long companyId)
+	
+	public synchronized void viewIncomeByCompany(long companyId)
+	{
+
+	}
+	
+	public synchronized void viewAllIncomes()
 	{
 		
 	}
 	
-	public void viewAllIncomes()
-	{
-		
-	}
-	
-	public void viewIncomeByCustomer(long customerId)
+	public synchronized  void viewIncomeByCustomer(long customerId)
 	{
 		
 	}
