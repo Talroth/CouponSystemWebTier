@@ -11,6 +11,7 @@ import javax.servlet.http.*;
 @WebFilter("/rest/*")
 public class LoginFilter implements Filter 
 {
+	// Paths for login services and login html
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
 	private static final String LOGIN_PAGE  = "/views/login.html";
 	private static final String CUSTOMER_SERVICE_PATH  = "/rest/customerService/login";
@@ -26,7 +27,7 @@ public class LoginFilter implements Filter
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException 
 	{
-
+		// Allow only use services from login page and if user already logged in
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
@@ -50,7 +51,7 @@ public class LoginFilter implements Filter
         	}
         }
 
-
+        // if user already logged in or if it comes from login page
         if (loggedIn || loginRequest)
         {
             chain.doFilter(request, response);
