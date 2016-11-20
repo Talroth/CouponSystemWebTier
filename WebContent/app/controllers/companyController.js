@@ -1,15 +1,20 @@
 var app = angular.module('company', ['ngMaterial','md.data.table','ngFileUpload']);
-app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$mdDateLocale','Upload', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$mdDateLocale,Upload) {
+app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$mdDateLocale','Upload','$window', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$mdDateLocale,Upload,$window) {
 	$scope.couponHeaders = [{"name" : 'Id'},{"name" : 'Title'},{"name" : 'Start Date'},{"name" : 'End Date'},{"name" : 'Amount'},{"name" : 'Coupon Type'},{"name" : 'Message'}, {"name" : 'Price'}];
 	var path = 'http://' + $location.host() + ':' + $location.port() + '/CouponSystemWebTier/rest/companyService'; 
 	$scope.couponType = ["RESTURANS", "ELECTRICITY", "FOOD", "HEALTH", "SPORTS", "CAMPING", "TRAVELLING", "OTHER"];
 	
 
-//	$scope.minDate = new Date(
-//		      $scope.myDate.getFullYear(),
-//		      $scope.myDate.getMonth() - 2,
-//		      $scope.myDate.getDate());
 	
+	$scope.logout = function() {
+	    $http({
+	        url: "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/rest/companyService/logout",
+	        method: 'POST'
+	    }).success(function(response) {
+	    	$window.location.href = 'http://' + $location.host() + ':' + $location.port() + '/CouponSystemWebTier/views/login.html';
+	    }).error(function (response) {console.log("error occurred."); 
+	                                 });
+	}
 	
 	$scope.connErro = function()
 	{

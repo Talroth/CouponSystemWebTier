@@ -24,7 +24,8 @@
  <md-card>
         <md-card-header>
           <md-card-avatar>
-           <img class="md-user-avatar" src="../img/coke.jpg" ng-click = "chosenUserType='admin'; adminStyle={'opacity':1}; customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};" ng-style="adminStyle"/>        
+          <md-icon md-svg-icon="../img/icons/configuration.svg" ng-click = "chosenUserType='admin'; adminStyle={'opacity':1}; customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};" ng-style="adminStyle"></md-icon>
+  <!--           <img class="md-user-avatar" src="../img/configuration.svg" ng-click = "chosenUserType='admin'; adminStyle={'opacity':1}; customerStyle={'opacity':0.5}; companyStyle={'opacity':0.5};" ng-style="adminStyle"/>   -->     
           </md-card-avatar>
            <md-card-header-text>
             <span class="md-title">Admin</span>
@@ -36,7 +37,8 @@
  <md-card>
         <md-card-header>
           <md-card-avatar>
-           <img class="md-user-avatar" src="../img/hotel.jpg"  ng-click = "chosenUserType='customer'; adminStyle={'opacity':0.5}; customerStyle={'opacity':1}; companyStyle={'opacity':0.5};" ng-style="customerStyle"/>        
+           <md-icon md-svg-icon="../img/icons/cart.svg" ng-click = "chosenUserType='customer'; adminStyle={'opacity':0.5}; customerStyle={'opacity':1}; companyStyle={'opacity':0.5};" ng-style="customerStyle"></md-icon>
+     <!--        <img class="md-user-avatar" src="../img/cart.svg"  ng-click = "chosenUserType='customer'; adminStyle={'opacity':0.5}; customerStyle={'opacity':1}; companyStyle={'opacity':0.5};" ng-style="customerStyle"/>   -->     
           </md-card-avatar>
            <md-card-header-text>
             <span class="md-title">Customer</span>
@@ -48,7 +50,8 @@
  <md-card>
         <md-card-header>
           <md-card-avatar>
-           <img class="md-user-avatar" src="../img/flu.jpg" ng-click = "chosenUserType='company'; adminStyle={'opacity':0.5}; customerStyle={'opacity':0.5}; companyStyle={'opacity':1};" ng-style="companyStyle"/>        
+          <md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "chosenUserType='company'; adminStyle={'opacity':0.5}; customerStyle={'opacity':0.5}; companyStyle={'opacity':1};" ng-style="companyStyle"></md-icon>
+        <!--    <img class="md-user-avatar" src="../img/flu.jpg" ng-click = "chosenUserType='company'; adminStyle={'opacity':0.5}; customerStyle={'opacity':0.5}; companyStyle={'opacity':1};" ng-style="companyStyle"/>    -->     
           </md-card-avatar>
            <md-card-header-text>
             <span class="md-title">Company</span>
@@ -75,62 +78,8 @@
 </md-content> 
 </div>
 </div>
-<a href="#" ng-click="logout()">Logout</a>
-
-   
 
 
-<p ng-repeat = "x in couponList">coupon id {{ x.id }}</p>
-
-
-<!--
-    <div class="p+" style="width: 33%">
-    <div class="card">
-        <div class="card__img card__img--top">
-            <img src="../img/couponPng.png" style="width: 160px>
-            <span class="fs-headline tc-white-1 display-block">Lorem Ipsum</span>
-        </div>
- 
-        <div class="p+">
-            <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
- 
-            <div class="paragraph fs-body-1">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
-                </p>
-            </div>
-        </div>
- 
-        <div class="card__actions">
-            <lx-button lx-color="orange" lx-type="flat">Share</lx-button>
-            <lx-button lx-color="orange" lx-type="flat">Learn more</lx-button>
-        </div>
-    </div>
-</div>
--->
-<!--
-<md-card md-theme="default" md-theme-watch style="width: 45%">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Card with image</span>
-            <span class="md-subhead">Large</span>
-          </md-card-title-text>
-          <md-card-title-media>
-            <div class="md-media-lg card-media">
-                <img src="../img/couponPng.png">
-              </div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button style="width: 33%">Action 1
-            <md-tooltip>
-            Action 1 tooltip
-          </md-tooltip>
-            </md-button>
-          <md-button>Action 2</md-button>
-        </md-card-actions>
-</md-card>
-   --> 
    
       <div class="footer">
         <h2>Not available for iPhone and Android.</h2>

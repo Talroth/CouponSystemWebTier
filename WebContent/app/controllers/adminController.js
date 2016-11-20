@@ -1,5 +1,5 @@
 var app = angular.module('admin', ['ngMaterial','md.data.table']);
-app.controller('adminController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout) {
+app.controller('adminController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$window', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$window) {
 
 $scope.customerHeaders = [{"name":'Id'},{"name":'Customer name'},{"name":'Password'}];
 $scope.companyHeaders = [{"name":'Id'},{"name":'Company name'},{"name":'Password'},{"name":'email'}];
@@ -392,6 +392,16 @@ $scope.getCoupons = function(customer) {
 	   }
 	            
 	 }
+
+	  $scope.logout = function() {
+		    $http({
+		        url: "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/rest/adminService/logout",
+		        method: 'POST'
+		    }).success(function(response) {
+		    	$window.location.href = 'http://' + $location.host() + ':' + $location.port() + '/CouponSystemWebTier/views/login.html';
+		    }).error(function (response) {console.log("error occurred."); 
+		                                 });
+		}
 	  
 /* Toast affect function */
   $scope.openToast = function(msg) {
@@ -427,4 +437,6 @@ app.config(function($httpProvider) {
 	  $httpProvider.defaults.headers["delete"] = {
 	    'Content-Type': 'application/json;charset=utf-8'
 	  };
-	})
+	}
+
+)

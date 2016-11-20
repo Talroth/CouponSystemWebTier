@@ -16,7 +16,18 @@
 <title>Green Coupons</title>
 </head>
 <body ng-app = "customer" ng-controller = "customerController" ng-init="init()">
-
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+          <md-icon md-svg-icon="../img/icons/cart.svg"></md-icon>
+        <h2>
+          <span>Customer screen</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="logout()">
+          <md-icon md-svg-icon="../img/icons/exit.svg" ></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
 <div layout="row">
     <div flex=15>
@@ -38,18 +49,18 @@
         <md-button class="md-raised md-primary" ng-click=couponListSwitch()>{{ switchTitle }}</md-button>
     </div>
     
-      <md-grid-list
+    <md-grid-list
         md-cols="1" md-cols-sm="3" md-cols-md="3" md-cols-gt-md="2"
         md-row-height-gt-md="1:1" md-row-height="1:1"
-        md-gutter="8px" md-gutter-gt-sm="4px" flex="85">
-
+        md-gutter="2px" md-gutter-gt-sm="1px" flex="85">
+  
     <md-grid-tile ng-repeat="coupon in couponList"
-                  class="ng-scope" >
-        <md-card>
+                   class="ng-scope" md-row-height="4:3">
+        <md-card >
 
             <md-card-title-media>
             <div class="md-media-sm card-media">
-                        <img style="max-width: 30%; height: auto;" ng-src="../img/{{ coupon.image }}" on-error-src="../img/coke.jpg" class="md-card-image" alt="Washed Out">
+                        <img   ng-src="../img/{{ coupon.image }}" on-error-src="../img/icons/cooltext215731799820496.png" class="md-card-image" alt="Washed Out">
                 </div>
           </md-card-title-media>
             <md-card-title>
@@ -76,7 +87,7 @@
         </md-card-content>
       </md-card>
     </md-grid-tile>
-  </md-grid-list>
+   </md-grid-list> 
 </div>    
   
 <md-content id="toast-container"></md-content>
