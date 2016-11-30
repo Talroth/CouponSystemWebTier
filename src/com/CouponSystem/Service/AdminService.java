@@ -114,6 +114,7 @@ public class AdminService
 	public Collection<Customer> getAllCustomer()  throws FacadeException {
 		try 
 		{
+			System.out.println("Start get all customer");
 			return getFacade().getAllCustomer();
 		} 
 		catch (FacadeException e) 
