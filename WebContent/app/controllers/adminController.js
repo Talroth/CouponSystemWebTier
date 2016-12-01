@@ -8,13 +8,37 @@ var path = 'http://' + $location.host() + ':' + $location.port() + '/CouponSyste
 $scope.showCoupons = false;
 
 
+$scope.chosenUserType = 'admin';
+
+//Testing
+
+$scope.charging = function() {
+	$http({		  
+		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/storeIncome', 
+		  method: 'POST',  
+		    content: 'application/json',
+		    accepts: 'application/json'
+		  }).success(function(response) {
+		    // $scope.customerList = response;
+			  console.log(response);
+
+		}).error(function(response) {
+		     //console.log("error occurred."); 
+		     //$scope.openToast("Problem with the server connection, please try to login again")
+		   });
+	
+}
+//**********************************************************************
+
 /* Customer section */
 $scope.getAllCustomer = function() {
 $http({
   url: path + '/getAllCustomer', 
   method: 'GET',  
-    content: 'application/json',
-    accepts: 'application/json'
+  header: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }
   }).success(function(response) {
      $scope.customerList = response;
 

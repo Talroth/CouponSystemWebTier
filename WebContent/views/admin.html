@@ -20,6 +20,7 @@
 <script src="../app/js/myComponent.js"></script>
 </head>
 <body ng-app="admin" ng-controller="adminController" ng-init="init()" style="background-color: #85e085;">
+
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
           <md-icon md-svg-icon="../img/icons/configuration.svg"></md-icon>
@@ -119,5 +120,6 @@
 </table>
 </md-table-container>
 <h1 ng-show="couponList.length===0">No coupons were purchased</h1>
+<md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "charging()"></md-icon>
 </body>
 </html>

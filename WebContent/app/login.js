@@ -7,6 +7,7 @@ app.controller("loginController", ['$scope', '$http', '$window', '$location', fu
 $scope.chosenUserType = 'admin';
 
 
+
 $scope.login = function() {
     $http({
     	 url: "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/rest/" + $scope.chosenUserType + "Service/login?user=" + $scope.userName + "&password=" + $scope.password,    

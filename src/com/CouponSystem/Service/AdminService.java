@@ -1,7 +1,10 @@
 package com.CouponSystem.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -16,12 +19,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.xml.ws.http.HTTPException;
 
 import com.CouponSystem.Beans.Company;
 import com.CouponSystem.Beans.Coupon;
 import com.CouponSystem.Beans.Customer;
+import com.CouponSystem.Beans.Income;
+import com.CouponSystem.Beans.IncomeType;
 import com.CouponSystem.CouponSystem.CouponSystem;
+import com.CouponSystem.Delegator.BuisnessDelegate;
 import com.CouponSystem.Facade.AdminFacade;
 import com.CouponSystem.FacadeException.FacadeException;
 
@@ -41,7 +48,24 @@ public class AdminService
 		
 	}
 
-	
+	// Testing storeIncome
+	@POST
+	@Path("/storeIncome")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void charge()
+	{
+		System.out.println("charge method in service");
+
+		BuisnessDelegate delgator = new BuisnessDelegate();
+		
+		System.out.println("After constructor");
+		
+		delgator.storeIncome(new Income(1, "h",LocalDateTime.now(), IncomeType.CUSTOMER_PURCHASE));
+
+		
+		System.out.println("after delgation process");
+	}
 	
 	@POST
 	@Path("/createCustomer")
