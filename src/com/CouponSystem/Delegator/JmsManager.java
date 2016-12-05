@@ -13,8 +13,8 @@ public class JmsManager {
 
 	  public final static String JMS_CONNECTION_FACTORY_JNDI="jms/RemoteConnectionFactory";
 	  public final static String JMS_QUEUE_JNDI="jms/queue/TestQ";
-	  public final static String JMS_USERNAME="admin";       //  The role for this user is "guest" in ApplicationRealm
-	  public final static String JMS_PASSWORD="";  
+	  public final static String JMS_USERNAME="jmsuser";       //  The role for this user is "guest" in ApplicationRealm
+	  public final static String JMS_PASSWORD="jmsuser";  
 	  public final static String WILDFLY_REMOTING_URL="http-remoting://localhost:8080";
 	 
 	  private QueueConnectionFactory qconFactory;
@@ -29,7 +29,7 @@ public class JmsManager {
 		     
 		    //  If you won't pass jms credential here then you will get 
 		    // [javax.jms.JMSSecurityException: HQ119031: Unable to validate user: null]    
-		    qcon = qconFactory.createQueueConnection(this.JMS_USERNAME, this.JMS_PASSWORD);   
+		    qcon = qconFactory.createQueueConnection(JmsManager.JMS_USERNAME, JmsManager.JMS_PASSWORD);   
 		     
 		    qsession = qcon.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
 		    queue = (Queue) ctx.lookup(queueName);
@@ -59,7 +59,7 @@ public class JmsManager {
 		           props.put(Context.PROVIDER_URL, WILDFLY_REMOTING_URL);   // NOTICE: "http-remoting" and port "8080"
 		           props.put(Context.SECURITY_PRINCIPAL, JMS_USERNAME);
 		           props.put(Context.SECURITY_CREDENTIALS, JMS_PASSWORD);
-		           //props.put("jboss.naming.client.ejb.context", true);
+		        //   props.put("jboss.naming.client.ejb.context", true);
 		           context = new InitialContext(props); 
 		           System.out.println("\n\tGot initial Context: "+context);     
 		      } catch (Exception e) {

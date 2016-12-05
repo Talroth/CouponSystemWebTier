@@ -1,22 +1,8 @@
 package com.CouponSystem.Delegator;
 
-import java.util.Hashtable;
-
-import javax.jms.Session;
 import javax.naming.*;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
-//**************************************
-import javax.jms.Connection;
-import javax.jms.DeliveryMode;
-import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.TextMessage;
-import javax.xml.ws.http.*;
-//***************************************
-
 import com.CouponSystem.Beans.Income;
 
 public class BuisnessDelegate {
