@@ -42,7 +42,9 @@ public class JmsManager {
 	  public void send(Income message,int counter) throws JMSException {
 	//    msg.setText(message);
 	//    msg.setIntProperty("counter", counter);
-	    qsender.send((Message) message);
+		ObjectMessage msg = qsession.createObjectMessage();
+		msg.setObject(message);
+	    qsender.send(msg);
 	  }
 	 
 	  public void close() throws JMSException {
