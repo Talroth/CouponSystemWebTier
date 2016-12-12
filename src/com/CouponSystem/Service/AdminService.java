@@ -61,8 +61,10 @@ public class AdminService
 		
 		System.out.println("After constructor");
 		
-		delgator.storeIncome(new Income(1, "h",LocalDateTime.now(), IncomeType.CUSTOMER_PURCHASE));
-
+		//delgator.storeIncome(new Income(1, "h",LocalDateTime.now(), IncomeType.CUSTOMER_PURCHASE));
+		// TODO: only for test, the above method is the right one
+		
+		delgator.viewAllIncomes();
 		
 		System.out.println("after delgation process");
 	}

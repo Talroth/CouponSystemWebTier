@@ -1,11 +1,21 @@
 package com.CouponSystem.Delegator;
 
 import javax.naming.*;
+import javax.rmi.PortableRemoteObject;
 
+import java.util.Hashtable;
+
+import javax.ejb.EJB;
 import javax.jms.JMSException;
 import com.CouponSystem.Beans.Income;
+import com.CouponSystem.EJB.IncomeService;
+import com.CouponSystem.EJB.IncomeServiceBean;
 
 public class BuisnessDelegate {
+	
+	//@EJB(lookup="java:module/IncomeServiceBean!com.CouponSystem.EJB.IncomeService")
+	//@EJB(name="IncomeBean")
+	//private IncomeService incomeProcess;
 	
 	public synchronized void storeIncome(Income income)
 	{
@@ -112,7 +122,30 @@ public class BuisnessDelegate {
 	
 	public synchronized void viewAllIncomes()
 	{
+		InitialContext ctx=getInitialContext();
+		Object ref = null;
+		try {
+	        // Create a look up string name
+			String appName = "";
+			String moduleName = "CouponSystemWebTier";
+			String distname = "";
+			String beanName = IncomeServiceBean.class.getSimpleName();
+			String interfaceName = IncomeService.class.getName();
+			
+	        String name = "ejb:" + appName + "/" + moduleName + "/" + 
+	        		distname    + "/" + beanName + "!" + interfaceName;
+			ref = ctx.lookup(name);
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		IncomeService stub=(IncomeService)PortableRemoteObject.narrow(ref, IncomeService.class);
+		
+
+		stub.viewAllIncomes();
+		
+	//	System.out.println(incomeProcess.viewAllIncomes()); 
 	}
 	
 	public synchronized  void viewIncomeByCustomer(long customerId)
@@ -120,4 +153,16 @@ public class BuisnessDelegate {
 		
 	}
 
+	public static InitialContext getInitialContext(){
+		Hashtable<String,String> h=new Hashtable<String,String>();
+		h.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+		
+		try {
+			return new InitialContext(h);
+		} catch (NamingException e) {
+			System.out.println("Cannot generate InitialContext");
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
