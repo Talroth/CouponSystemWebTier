@@ -66,7 +66,7 @@
 					ng-model="cust.password" ng-change="passChanged = 1" /></td>
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCustomer(cust); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,cust,customerList,'Customer');">Remove</md-button></td>
-		<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "viewIncomeByCustomer(cust)"></md-icon></td>
+		<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "incomeTbl=true; viewIncomeByCustomer(cust)"></md-icon></td>
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Customer')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
@@ -95,6 +95,7 @@
 		<td md-cell>{{comp.email}}</td>			
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCompany(comp); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,comp,companyList,'Company');">Remove</md-button></td>	
+	<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click="viewIncomeByCompan(comp)"></md-icon></td>
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Company')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
@@ -121,9 +122,29 @@
 </table>
 </md-table-container>
 <h1 ng-show="couponList.length===0">No coupons were purchased</h1>
-<ul>
-<li ng-repeat="income in incomesList">{{income.id}}</li>
-<li> {{income.name}}</li>
-</ul>
+
+<hr />
+<h2>Transaction activities</h2>
+<md-table-container>
+<table md-table>
+<thead md-head>
+<th md-column>Id</th>
+<th md-column>Customer/Company charged name</th>
+<th md-column>Action date</th>
+<th md-column>Description</th>
+<th md-column>Amount</th>
+</thead>
+<tbody>
+<tr md-row ng-repeat="income in incomesList">
+<td md-cell>{{income.id}}</td>
+<td md-cell>{{income.name}}</td>
+<td md-cell>{{income.date.dayOfMonth}}/{{income.date.monthValue}}/{{income.date.year}}</td>
+<td md-cell>{{income.description}}</td>
+<td md-cell>{{income.amount}}</td>
+</tr>
+</tbody>
+</table>
+</md-table-container>
+
 </body>
 </html>

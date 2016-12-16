@@ -106,5 +106,34 @@
       </md-button>
 </md-table-container>
 </div>
+
+
+<div>
+<md-table-container>
+  <table md-table>
+    <thead md-head md-order="myOrder">
+      <!-- when the user clicks this cell, the myOrder variable will get the value 'nameToLower' -->
+      <th md-column md-order-by="id" md-numric>Id</th>
+      <!-- the variable myOrder will not be changed when this cell is clicked -->
+      <th md-column md-order-by="title">Customer/Company charged name</th>
+      <th md-column md-order-by="startDate">Action date</th>
+      <th md-column>Description</th>
+      <th md-column md-numric md-order-by="amount">Amount</th>
+    </thead>
+    <tbody md-body>
+
+      <tr md-row ng-repeat="income in incomeList | orderBy: myOrder | filter:search">
+      <td md-cell>{{income.id}}</td>
+      <td md-cell>{{income.name}}</td>
+      <td md-cell>{{income.date | date}}</td>
+      <td md-cell>{{income.description}}</td>
+      <td md-cell>{{income.amount}}</td>	
+	 </tr>
+    </tbody>
+  </table>
+</md-table-container>
+</div>
+
+
 </body>
 </html>

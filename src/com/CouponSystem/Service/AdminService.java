@@ -83,6 +83,20 @@ public class AdminService
 		
 	}
 	
+	@POST
+	@Path("/viewIncomeByCompany")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Income> viewIncomeByCompany(Company company)
+	{
+
+		
+		System.out.println("After constructor");
+				
+		return delgator.viewIncomeByCompany(company.getId());
+		
+	}
+	
 	@GET
 	@Path("/viewAllIncomes")
 	@Consumes(MediaType.APPLICATION_JSON)

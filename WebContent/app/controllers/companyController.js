@@ -41,6 +41,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
     
     
 	$scope.init = function() {
+		$scope.getMyIncomes();
 	$scope.getAllCoupons().then(function(response){
 		$scope.couponList = response.data;
 		$scope.dataMod = [];
@@ -119,7 +120,21 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	}
 	
 
-	
+	$scope.getMyIncomes = function() {
+		console.log("****");
+		 $http({
+		  url: path + '/viewIncomeForMyCompany', 
+		  method: 'GET',  
+		    accepts: 'application/json'
+		  }).success(function(response) {
+		     $scope.incomeList = response;
+		     console.log("****" + response);
+
+		}).error(function(response) {
+		     console.log("error occurred."); 
+		     $scope.connErro();
+		   });
+		}
 	
 	$scope.getAllCoupons = function() {
 		return $http({

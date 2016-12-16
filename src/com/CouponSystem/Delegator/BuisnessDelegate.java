@@ -40,11 +40,11 @@ public class BuisnessDelegate {
     }
 	
 	
-	public synchronized void viewIncomeByCompany(long companyId)
+	public synchronized Collection<Income> viewIncomeByCompany(long companyId)
 	{
 		IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
 		
-		stub.viewIncomeByCompany(companyId);
+		return stub.viewIncomeByCompany(companyId);
 	}
 	
 	public synchronized Collection<Income> viewAllIncomes()

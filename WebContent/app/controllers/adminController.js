@@ -7,14 +7,14 @@ $scope.couponHeaders = [{"name" : 'Id'},{"name" : 'Title'},{"name" : 'Start Date
 var path = 'http://' + $location.host() + ':' + $location.port() + '/CouponSystemWebTier/rest/adminService'; 
 $scope.showCoupons = false;
 
+$scope.incomeTbl = true;
 
 $scope.chosenUserType = 'admin';
 
-//Testing
 
-$scope.charging = function() {
+$scope.viewAllIncomes = function() {
 	$http({		  
-		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/viewAllIncomes', 
+		  url: path + '/viewAllIncomes', 
 		  method: 'GET',  
 		    content: 'application/json',
 		    accepts: 'application/json'
@@ -32,7 +32,7 @@ $scope.charging = function() {
 
 $scope.viewIncomeByCustomer = function(customer) {
 	$http({		  
-		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/viewIncomeByCustomer', 
+		  url: path + '/viewIncomeByCustomer', 
 		  method: 'POST',  
 		  data: customer,
 		    content: 'application/json',
@@ -43,6 +43,24 @@ $scope.viewIncomeByCustomer = function(customer) {
 
 		}).error(function(response) {
 		     //console.log("error occurred."); 
+		     //$scope.openToast("Problem with the server connection, please try to login again")
+		   });
+	
+}
+
+$scope.viewIncomeByCompan = function(company) {
+	$http({		  
+		  url: viewAllIncomes + '/viewIncomeByCompany', 
+		  method: 'POST',  
+		  data: company,
+		    content: 'application/json',
+		    accepts: 'application/json'
+		  }).success(function(response) {
+			  $scope.incomesList = response;
+			  console.log(response);
+
+		}).error(function(response) {
+		    // console.log("error occurred."); 
 		     //$scope.openToast("Problem with the server connection, please try to login again")
 		   });
 	
