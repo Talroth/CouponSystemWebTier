@@ -42,6 +42,7 @@ public class AdminService
 	private HttpServletRequest request;
 	private CouponSystem mainSystem = CouponSystem.getInstance();
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
+	private BuisnessDelegate delgator = new BuisnessDelegate();
 
 	public AdminService()
 	{
@@ -57,7 +58,6 @@ public class AdminService
 	{
 		System.out.println("charge method in service");
 
-		BuisnessDelegate delgator = new BuisnessDelegate();
 		
 		System.out.println("After constructor");
 		
@@ -67,6 +67,31 @@ public class AdminService
 		delgator.viewAllIncomes();
 		
 		System.out.println("after delgation process");
+	}
+	
+	@POST
+	@Path("/viewIncomeByCustomer")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Income> viewIncomeByCustomer(Customer customer)
+	{
+
+		
+		System.out.println("After constructor");
+				
+		return delgator.viewIncomeByCustomer(customer.getId());
+		
+	}
+	
+	@GET
+	@Path("/viewAllIncomes")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Collection<Income> viewAllIncomes()
+	{
+		System.out.println("viewAllIncomes method in service");
+
+		
+		return delgator.viewAllIncomes();				
 	}
 	
 	@POST

@@ -66,6 +66,7 @@
 					ng-model="cust.password" ng-change="passChanged = 1" /></td>
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCustomer(cust); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,cust,customerList,'Customer');">Remove</md-button></td>
+		<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "viewIncomeByCustomer(cust)"></md-icon></td>
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Customer')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
@@ -120,6 +121,9 @@
 </table>
 </md-table-container>
 <h1 ng-show="couponList.length===0">No coupons were purchased</h1>
-<md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "charging()"></md-icon>
+<ul>
+<li ng-repeat="income in incomesList">{{income.id}}</li>
+<li> {{income.name}}</li>
+</ul>
 </body>
 </html>

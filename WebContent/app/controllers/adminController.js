@@ -14,12 +14,31 @@ $scope.chosenUserType = 'admin';
 
 $scope.charging = function() {
 	$http({		  
-		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/storeIncome', 
-		  method: 'POST',  
+		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/viewAllIncomes', 
+		  method: 'GET',  
 		    content: 'application/json',
 		    accepts: 'application/json'
 		  }).success(function(response) {
 		    // $scope.customerList = response;
+			  $scope.incomesList = response;
+			  console.log(response);
+
+		}).error(function(response) {
+		     //console.log("error occurred."); 
+		     //$scope.openToast("Problem with the server connection, please try to login again")
+		   });
+	
+}
+
+$scope.viewIncomeByCustomer = function(customer) {
+	$http({		  
+		  url: 'http://localhost:8080/CouponSystemWebTier/rest/adminService/viewIncomeByCustomer', 
+		  method: 'POST',  
+		  data: customer,
+		    content: 'application/json',
+		    accepts: 'application/json'
+		  }).success(function(response) {
+			  $scope.incomesList = response;
 			  console.log(response);
 
 		}).error(function(response) {
