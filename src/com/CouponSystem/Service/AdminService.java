@@ -1,10 +1,7 @@
 package com.CouponSystem.Service;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
-import javax.jms.JMSException;
-import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -19,14 +16,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.xml.ws.http.HTTPException;
 
 import com.CouponSystem.Beans.Company;
 import com.CouponSystem.Beans.Coupon;
 import com.CouponSystem.Beans.Customer;
 import com.CouponSystem.Beans.Income;
-import com.CouponSystem.Beans.IncomeType;
 import com.CouponSystem.CouponSystem.CouponSystem;
 import com.CouponSystem.Delegator.BuisnessDelegate;
 import com.CouponSystem.Facade.AdminFacade;
@@ -42,45 +37,29 @@ public class AdminService
 	private HttpServletRequest request;
 	private CouponSystem mainSystem = CouponSystem.getInstance();
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
-	private BuisnessDelegate delgator = new BuisnessDelegate();
+	private BuisnessDelegate delgator = BuisnessDelegate.getIncomeService();
 
 	public AdminService()
 	{
 		
 	}
 
-	// Testing storeIncome
-	@POST
-	@Path("/storeIncome")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public void charge()
-	{
-		System.out.println("charge method in service");
 
-		
-		System.out.println("After constructor");
-		
-		//delgator.storeIncome(new Income(1, "h",LocalDateTime.now(), IncomeType.CUSTOMER_PURCHASE));
-		// TODO: only for test, the above method is the right one
-		
-		delgator.viewAllIncomes();
-		
-		System.out.println("after delgation process");
-	}
 	
 	@POST
 	@Path("/viewIncomeByCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Income> viewIncomeByCustomer(Customer customer)
-	{
-
-		
-		System.out.println("After constructor");
-				
-		return delgator.viewIncomeByCustomer(customer.getId());
-		
+	{				
+		try 
+		{
+			return delgator.viewIncomeByCustomer(customer.getId());
+		} 
+		catch (FacadeException e) 
+		{
+			return null;
+		}		
 	}
 	
 	@POST
@@ -93,7 +72,15 @@ public class AdminService
 		
 		System.out.println("After constructor");
 				
-		return delgator.viewIncomeByCompany(company.getId());
+		try 
+		{
+			return delgator.viewIncomeByCompany(company.getId());
+		} 
+		catch (FacadeException e) 
+		{
+			// TODO Auto-generated catch block
+			return null;
+		}
 		
 	}
 	
@@ -105,7 +92,14 @@ public class AdminService
 		System.out.println("viewAllIncomes method in service");
 
 		
-		return delgator.viewAllIncomes();				
+		try 
+		{
+			return delgator.viewAllIncomes();
+		} 
+		catch (FacadeException e) 
+		{
+			return null;
+		}				
 	}
 	
 	@POST

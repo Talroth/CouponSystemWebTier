@@ -10,58 +10,90 @@ import javax.jms.JMSException;
 import com.CouponSystem.Beans.Income;
 import com.CouponSystem.EJB.IncomeService;
 import com.CouponSystem.EJB.IncomeServiceBean;
+import com.CouponSystem.FacadeException.FacadeException;
+
+
 
 public class BuisnessDelegate {
 	
-	//@EJB(lookup="java:module/IncomeServiceBean!com.CouponSystem.EJB.IncomeService")
-	//@EJB(name="IncomeBean")
-	//private IncomeService incomeProcess;
+	private static IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
+	private static BuisnessDelegate me = new BuisnessDelegate();
 	
-	public synchronized void storeIncome(Income income)
+	private BuisnessDelegate()
+	{
+		
+	}
+		
+	public static BuisnessDelegate getIncomeService()
+	{
+		return me;
+	}
+	
+	public synchronized void storeIncome(Income income) 
 	{
 		JmsManager manager = new JmsManager();
 		
-		try {
-			manager.init(JmsManager.getInitialContext(), JmsManager.JMS_QUEUE_JNDI);
+		try 
+		{
+			manager.init();
 			
-			manager.send(income, 1);
+			manager.send(income);
 			
 			manager.close();
 			
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
+		catch (NamingException | JMSException e) 
+		{
+			// No interaction with client - some log system should use here
+		} 
 		
 
     }
 	
 	
-	public synchronized Collection<Income> viewIncomeByCompany(long companyId)
+	public synchronized Collection<Income> viewIncomeByCompany(long companyId) throws FacadeException
 	{
-		IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
-		
-		return stub.viewIncomeByCompany(companyId);
+		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
+		try
+		{
+			return stub.viewIncomeByCompany(companyId);
+		}
+		catch (Exception e)
+		{
+			throw new FacadeException("Fail to generate incomes list");
+		}
 	}
 	
-	public synchronized Collection<Income> viewAllIncomes()
+	public synchronized Collection<Income> viewAllIncomes() throws FacadeException
 	{
 	
-		IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
+		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
+				
+		try
+		{
+			return stub.viewAllIncomes();
+		}
+		catch (Exception e)
+		{
+			throw new FacadeException("Fail to generate incomes list");
+		}
 		
-		return stub.viewAllIncomes();
 		
 	//	System.out.println(incomeProcess.viewAllIncomes()); 
 	}
 	
-	public synchronized  Collection<Income> viewIncomeByCustomer(long customerId)
+	public synchronized  Collection<Income> viewIncomeByCustomer(long customerId) throws FacadeException
 	{
-		IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
-		
-		return stub.viewIncomeByCustomer(customerId);
+		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
+				
+		try
+		{
+			return stub.viewIncomeByCustomer(customerId);
+		}
+		catch (Exception e)
+		{
+			throw new FacadeException("Fail to generate incomes list");
+		}
 	}
 
 	private static Object getReference(){
@@ -80,7 +112,7 @@ public class BuisnessDelegate {
 	        
 	        Object ref = new InitialContext(h).lookup(name);
 	        return ref;
-			//return new InitialContext(h);
+
 		} catch (NamingException e) {
 			System.out.println("Cannot generate InitialContext");
 			e.printStackTrace();

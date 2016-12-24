@@ -25,7 +25,7 @@
 
 </head>
 <body ng-app="company" ng-controller="companyController" ng-init="init()" style="background-color: #85e085;">
-    <md-toolbar class="md-hue-2">
+    <md-toolbar class="md-hue-2" style="margin-bottom:20px">
       <div class="md-toolbar-tools">
           <md-icon md-svg-icon="../img/icons/cash-register.svg"></md-icon>
         <h2>
@@ -111,23 +111,30 @@
 <div>
 <md-table-container>
   <table md-table>
-    <thead md-head md-order="myOrder">
+    <thead md-head>
       <!-- when the user clicks this cell, the myOrder variable will get the value 'nameToLower' -->
-      <th md-column md-order-by="id" md-numric>Id</th>
+      <th md-column md-numric>Id</th>
       <!-- the variable myOrder will not be changed when this cell is clicked -->
-      <th md-column md-order-by="title">Customer/Company charged name</th>
-      <th md-column md-order-by="startDate">Action date</th>
+      <th md-column>Customer/Company charged name</th>
+      <th md-column>Action date</th>
       <th md-column>Description</th>
-      <th md-column md-numric md-order-by="amount">Amount</th>
+      <th md-column md-numric>Amount</th>
     </thead>
     <tbody md-body>
 
-      <tr md-row ng-repeat="income in incomeList | orderBy: myOrder | filter:search">
+      <tr md-row ng-repeat="income in incomeList">
       <td md-cell>{{income.id}}</td>
       <td md-cell>{{income.name}}</td>
       <td md-cell>{{income.date.year}}-{{income.date.monthValue}}-{{income.date.dayOfMonth}}</td>
       <td md-cell>{{income.description}}</td>
       <td md-cell>{{income.amount}}</td>	
+	 </tr>
+	 <tr>
+	 <td></td>
+	 <td></td>
+	 <td></td>
+	 <td></td>
+	 <td>Total: {{ calIncome | number:2}}</td>
 	 </tr>
     </tbody>
   </table>

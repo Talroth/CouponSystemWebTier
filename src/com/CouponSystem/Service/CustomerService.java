@@ -1,5 +1,6 @@
 package com.CouponSystem.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.xml.ws.http.HTTPException;
 
+import com.CouponSystem.Beans.Company;
 import com.CouponSystem.Beans.Coupon;
 import com.CouponSystem.Beans.CouponType;
+import com.CouponSystem.Beans.Customer;
+import com.CouponSystem.Beans.Income;
+import com.CouponSystem.Beans.IncomeType;
 import com.CouponSystem.CouponSystem.CouponSystem;
+import com.CouponSystem.Delegator.BuisnessDelegate;
 import com.CouponSystem.Facade.CustomerFacade;
 import com.CouponSystem.FacadeException.FacadeException;
 
@@ -31,7 +37,7 @@ public class CustomerService  {
 	private HttpServletRequest request;
 	private CouponSystem mainSystem = CouponSystem.getInstance();
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
-	private static final String USER_NAME  = "userName";
+	private BuisnessDelegate delgator = BuisnessDelegate.getIncomeService();
 
 	@POST
 	@Path("/purchaseCoupon")
@@ -40,7 +46,11 @@ public class CustomerService  {
 	public String purchaseCoupon(Coupon coupon)  {		
 		try 
 		{
-			getFacade().purchaseCoupon(coupon);
+			CustomerFacade curCust = getFacade();
+			curCust.purchaseCoupon(coupon);
+			
+			delgator.storeIncome(new Income(curCust.getMe().getCustName(), LocalDateTime.now(), IncomeType.CUSTOMER_PURCHASE, coupon.getPrice(), curCust.getMe().getId(), curCust.getCompanyIdByCouponId(coupon.getId())));
+			
 			return "ok";
 		} 
 		catch (FacadeException e) 
@@ -104,7 +114,6 @@ public class CustomerService  {
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute(FACADE_ATTRIBUTE, customerFacade);
-				session.setAttribute(USER_NAME, name);
 				return "ok";		
 			}
 			return "fail";	
@@ -180,19 +189,4 @@ public class CustomerService  {
 		}
 	}
 	
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/getUserName")
-	public String getUserName() throws FacadeException
-	{
-		HttpSession session = request.getSession(false);
-		if (session !=null)
-		{
-			return  (String) session.getAttribute(USER_NAME);
-		}
-		else
-		{
-			throw new FacadeException(DAOExceptionErrorType.ADMIN_FAIL_LOGIN,"User is not connected");
-		}
-	}
 }

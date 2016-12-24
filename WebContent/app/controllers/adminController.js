@@ -50,7 +50,7 @@ $scope.viewIncomeByCustomer = function(customer) {
 
 $scope.viewIncomeByCompan = function(company) {
 	$http({		  
-		  url: viewAllIncomes + '/viewIncomeByCompany', 
+		  url: path + '/viewIncomeByCompany', 
 		  method: 'POST',  
 		  data: company,
 		    content: 'application/json',

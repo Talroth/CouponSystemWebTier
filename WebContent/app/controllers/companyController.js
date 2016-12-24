@@ -55,6 +55,8 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	        });
 	           
 	    }
+	    
+	  
 	},function(error) {});
 	
 	$scope.getCompanyDetails().then(function(response){
@@ -121,15 +123,14 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	
 
 	$scope.getMyIncomes = function() {
-		console.log("****");
 		 $http({
 		  url: path + '/viewIncomeForMyCompany', 
 		  method: 'GET',  
 		    accepts: 'application/json'
 		  }).success(function(response) {
 		     $scope.incomeList = response;
-		     console.log("****" + response);
-
+		     $scope.calIncome =  $scope.totalIncome(response);
+		     
 		}).error(function(response) {
 		     console.log("error occurred."); 
 		     $scope.connErro();
@@ -294,6 +295,16 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 				$scope.connErro();
 			     console.log("error occurred."); 
 			   });
+	}
+	
+	$scope.totalIncome = function(incomes) {
+		console.log("testing sum")
+	    var total = 0;
+	    for(var i = 0; i < incomes.length; i++){
+	        var income = incomes[i].amount;
+	        total += income;
+	    }
+	    return total;
 	}
 	
 	/* Toast affect function */

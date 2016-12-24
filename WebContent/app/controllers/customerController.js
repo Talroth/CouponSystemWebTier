@@ -207,6 +207,8 @@ $scope.purchaseSuccess = function(ev,couponName) {
   );
 };
 
+
+
 $scope.logout = function() {
     $http({
         url: "http://" + $location.host() + ":" + $location.port() + "/CouponSystemWebTier/rest/customerService/logout",
