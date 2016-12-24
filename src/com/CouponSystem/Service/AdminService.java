@@ -68,9 +68,6 @@ public class AdminService
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Income> viewIncomeByCompany(Company company)
 	{
-
-		
-		System.out.println("After constructor");
 				
 		try 
 		{
@@ -78,7 +75,6 @@ public class AdminService
 		} 
 		catch (FacadeException e) 
 		{
-			// TODO Auto-generated catch block
 			return null;
 		}
 		

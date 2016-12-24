@@ -66,7 +66,7 @@
 					ng-model="cust.password" ng-change="passChanged = 1" /></td>
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCustomer(cust); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,cust,customerList,'Customer');">Remove</md-button></td>
-		<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click = "incomeTbl=true; viewIncomeByCustomer(cust)"></md-icon></td>
+		<td md-cell><md-button class="md-raised md-primary" ng-click="incomeTbl=true; viewIncomeByCustomer(cust)">Income</md-button></td>
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Customer')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
@@ -95,7 +95,7 @@
 		<td md-cell>{{comp.email}}</td>			
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCompany(comp); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,comp,companyList,'Company');">Remove</md-button></td>	
-	<td md-cell><md-icon md-svg-icon="../img/icons/cash-register.svg" ng-click="viewIncomeByCompan(comp)"></md-icon></td>
+	<td md-cell><md-button class="md-raised md-primary" ng-click="viewIncomeByCompan(comp)">Income</md-button></td>
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Company')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
