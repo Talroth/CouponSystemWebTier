@@ -1,5 +1,5 @@
 var app = angular.module('admin', ['ngMaterial','md.data.table']);
-app.controller('adminController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$window', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$window) {
+app.controller('adminController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$window','$mdSidenav', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$window,$mdSidenav) {
 
 $scope.customerHeaders = [{"name":'Id'},{"name":'Customer name'},{"name":'Password'}];
 $scope.companyHeaders = [{"name":'Id'},{"name":'Company name'},{"name":'Password'},{"name":'email'}];
@@ -11,6 +11,9 @@ $scope.incomeTbl = true;
 
 $scope.chosenUserType = 'admin';
 
+$scope.toggleLeft = function buildToggler() {
+      $mdSidenav('IncomeSideNav').toggle();
+  }
 
 $scope.viewAllIncomes = function() {
 	$http({		  

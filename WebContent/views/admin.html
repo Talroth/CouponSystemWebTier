@@ -95,7 +95,7 @@
 		<td md-cell>{{comp.email}}</td>			
 	<td md-cell><md-button class="md-raised md-primary" ng-init="passChanged = 0" ng-disabled="passChanged == 0" ng-click="passChanged = !passChanged; updateCompany(comp); passChanged = 0">Save</md-button></td>
 	<td md-cell><md-button class="md-raised md-primary"  ng-click="removeDialog($event,$index,comp,companyList,'Company');">Remove</md-button></td>	
-		<td md-cell><md-button class="md-raised md-primary"  ng-click="viewIncomeByCompan(comp)">Income</md-button></td>	
+		<td md-cell><md-button class="md-raised md-primary"  ng-click="toggleLeft(); viewIncomeByCompan(comp)">Income</md-button></td>	
 	 </tr>
 	  <td md-cell><md-button class="md-fab md-primary" ng-click="showCreateDialog($event,'Company')">
       <md-icon md-svg-icon="../img/icons/1475902602_plus.svg"></md-icon>
@@ -125,6 +125,7 @@
 
 <hr />
 <h2>Transaction activities</h2>
+<!-- 
 <md-table-container>
 <table md-table>
 <thead md-head>
@@ -145,6 +146,47 @@
 </tbody>
 </table>
 </md-table-container>
+ -->
+ <md-sidenav class="md-sidenav-left" md-component-id="IncomeSideNav"
+                md-disable-backdrop md-whiteframe="4">
+                
+                      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Income</h1>
+      </md-toolbar>
+      
+<md-table-container>
+<table md-table>
+<thead md-head>
+<th md-column>Id</th>
+<th md-column>Customer/Company charged name</th>
+<th md-column>Action date</th>
+<th md-column>Description</th>
+<th md-column>Amount</th>
+</thead>
+<tbody>
+<tr md-row ng-repeat="income in incomesList">
+<td md-cell>{{income.id}}</td>
+<td md-cell>{{income.name}}</td>
+<td md-cell>{{income.date.year}}-{{income.date.monthValue}}-{{income.date.dayOfMonth}}</td>
+<td md-cell>{{income.description}}</td>
+<td md-cell>{{income.amount}}</td>
+</tr>
+</tbody>
+</table>
+</md-table-container>
+
+
+
+      <md-content layout-margin>
+        <p>
+          This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+        </p>
+        <md-button ng-click="toggleLeft()" class="md-accent">
+          Close this Sidenav
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
 
 </body>
 </html>
