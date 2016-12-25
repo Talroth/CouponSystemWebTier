@@ -68,9 +68,6 @@ public class AdminService
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Income> viewIncomeByCompany(Company company)
 	{
-
-		
-		System.out.println("After constructor");
 				
 		try 
 		{
@@ -78,7 +75,6 @@ public class AdminService
 		} 
 		catch (FacadeException e) 
 		{
-			// TODO Auto-generated catch block
 			return null;
 		}
 		
@@ -89,8 +85,6 @@ public class AdminService
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Collection<Income> viewAllIncomes()
 	{
-		System.out.println("viewAllIncomes method in service");
-
 		
 		try 
 		{
@@ -173,7 +167,6 @@ public class AdminService
 	public Collection<Customer> getAllCustomer()  throws FacadeException {
 		try 
 		{
-			System.out.println("Start get all customer");
 			return getFacade().getAllCustomer();
 		} 
 		catch (FacadeException e) 
@@ -242,7 +235,6 @@ public class AdminService
 	public Company getCompany(@PathParam("id") long id) {
 		try 
 		{
-			System.out.println("Start getCompany Service");
 			return getFacade().getCompany(id);
 		} 
 		catch (FacadeException e) 

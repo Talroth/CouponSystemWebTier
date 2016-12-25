@@ -53,7 +53,6 @@ public class BuisnessDelegate {
 	
 	public synchronized Collection<Income> viewIncomeByCompany(long companyId) throws FacadeException
 	{
-		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
 		try
 		{
 			return stub.viewIncomeByCompany(companyId);
@@ -66,8 +65,6 @@ public class BuisnessDelegate {
 	
 	public synchronized Collection<Income> viewAllIncomes() throws FacadeException
 	{
-	
-		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
 				
 		try
 		{
@@ -78,13 +75,10 @@ public class BuisnessDelegate {
 			throw new FacadeException("Fail to generate incomes list");
 		}
 		
-		
-	//	System.out.println(incomeProcess.viewAllIncomes()); 
 	}
 	
 	public synchronized  Collection<Income> viewIncomeByCustomer(long customerId) throws FacadeException
 	{
-		//IncomeService stub=(IncomeService)PortableRemoteObject.narrow(getReference(), IncomeService.class);
 				
 		try
 		{

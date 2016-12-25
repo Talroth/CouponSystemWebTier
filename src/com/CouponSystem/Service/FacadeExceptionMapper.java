@@ -13,9 +13,6 @@ import com.CouponSystem.FacadeException.FacadeException;
 @Provider
 public class FacadeExceptionMapper implements ExceptionMapper<FacadeException> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 
