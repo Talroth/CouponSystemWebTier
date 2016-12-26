@@ -32,6 +32,7 @@
           <span>Company screen : {{companyDetails.compName}} - {{companyDetails.email}}</span>
         </h2>
         <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="toggleLeft()">Income</md-button>
         <md-button class="md-icon-button" ng-click="logout()">
           <md-icon md-svg-icon="../img/icons/exit.svg" ></md-icon>
         </md-button>
@@ -64,7 +65,7 @@
             </md-input-container>
             <md-dialog-actions>
             <md-button  class="md-raised md-primary" ng-disabled="endDateFilter == null" ng-click="filterByEndDate(endDateFilter)">Filter by end date</md-button>
-            
+             <md-button  class="md-raised md-primary"  ng-click="init()">Reset</md-button>
             </md-dialog-actions>
 </div>
 <div style="margin-left:250px;">
@@ -107,40 +108,25 @@
 </md-table-container>
 </div>
 
-
-<div>
-<md-table-container>
-  <table md-table>
-    <thead md-head>
-      <!-- when the user clicks this cell, the myOrder variable will get the value 'nameToLower' -->
-      <th md-column md-numric>Id</th>
-      <!-- the variable myOrder will not be changed when this cell is clicked -->
-      <th md-column>Customer/Company charged name</th>
-      <th md-column>Action date</th>
-      <th md-column>Description</th>
-      <th md-column md-numric>Amount</th>
-    </thead>
-    <tbody md-body>
-
-      <tr md-row ng-repeat="income in incomeList">
-      <td md-cell>{{income.id}}</td>
-      <td md-cell>{{income.name}}</td>
-      <td md-cell>{{income.date.year}}-{{income.date.monthValue}}-{{income.date.dayOfMonth}}</td>
-      <td md-cell>{{income.description}}</td>
-      <td md-cell>{{income.amount}}</td>	
-	 </tr>
-	 <tr>
-	 <td></td>
-	 <td></td>
-	 <td></td>
-	 <td></td>
-	 <td>Total: {{ calIncome | number:2}}</td>
-	 </tr>
-    </tbody>
-  </table>
-</md-table-container>
-</div>
-
-
+	<md-sidenav class="md-sidenav-left" md-component-id="IncomeSideNav"
+		md-disable-backdrop md-whiteframe="4"> <md-toolbar
+		class="md-theme-indigo">
+	<h1 class="md-toolbar-tools">Transaction activities</h1>
+	</md-toolbar>
+		<md-content layout-margin> 
+			<md-button ng-click="closeLeft()" class="md-accent"> Close </md-button>
+		</md-content>
+	<div ng-repeat="income in incomeList">
+		<md-content layout-margin>
+		<hr />
+		<p>Customer/Company charged name: {{income.name}}</p>
+		<p>Action date:
+			{{income.date.year}}-{{income.date.monthValue}}-{{income.date.dayOfMonth}}</p>
+		<p>Description: {{income.description}}</p>
+		<p>Amount: {{income.amount}}</p>
+		</md-content>
+	</div>
+	<hr />
+	<p layout-margin>Total: {{totalIncome(incomeList)}}</p>
 </body>
 </html>

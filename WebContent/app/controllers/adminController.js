@@ -11,8 +11,24 @@ $scope.incomeTbl = true;
 
 $scope.chosenUserType = 'admin';
 
-$scope.toggleLeft = function buildToggler() {
-      $mdSidenav('IncomeSideNav').toggle();
+$scope.toggleLeft = function buildToggler(Name) {
+	if (!$mdSidenav('IncomeSideNav').isOpen())
+		{
+			if (Name.compName == null)
+			{
+				useName = Name.custName;
+			}
+			else
+			{
+				useName = Name.compName;
+			}
+			$scope.compNameToggle = useName;
+			$mdSidenav('IncomeSideNav').toggle();
+		}
+  }
+
+$scope.closeLeft = function buildToggler() {
+		$mdSidenav('IncomeSideNav').toggle();
   }
 
 $scope.viewAllIncomes = function() {

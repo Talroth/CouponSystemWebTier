@@ -1,10 +1,21 @@
 var app = angular.module('company', ['ngMaterial','md.data.table','ngFileUpload']);
-app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$mdDateLocale','Upload','$window', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$mdDateLocale,Upload,$window) {
+app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog', '$mdToast','$rootScope','$timeout','$mdDateLocale','Upload','$window','$mdSidenav', function ($scope, $http, $location, $mdDialog, $mdToast, $rootScope,$timeout,$mdDateLocale,Upload,$window,$mdSidenav) {
 	$scope.couponHeaders = [{"name" : 'Id'},{"name" : 'Title'},{"name" : 'Start Date'},{"name" : 'End Date'},{"name" : 'Amount'},{"name" : 'Coupon Type'},{"name" : 'Message'}, {"name" : 'Price'}];
 	var path = 'http://' + $location.host() + ':' + $location.port() + '/CouponSystemWebTier/rest/companyService'; 
 	$scope.couponType = ["RESTURANS", "ELECTRICITY", "FOOD", "HEALTH", "SPORTS", "CAMPING", "TRAVELLING", "OTHER"];
 	
 
+	$scope.toggleLeft = function buildToggler() {
+		$scope.getMyIncomes();
+		if (!$mdSidenav('IncomeSideNav').isOpen())
+			{
+				$mdSidenav('IncomeSideNav').toggle();
+			}
+	  }
+
+	$scope.closeLeft = function buildToggler() {
+			$mdSidenav('IncomeSideNav').toggle();
+	  }
 	
 	$scope.logout = function() {
 	    $http({
@@ -41,7 +52,6 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
     
     
 	$scope.init = function() {
-		$scope.getMyIncomes();
 	$scope.getAllCoupons().then(function(response){
 		$scope.couponList = response.data;
 		$scope.dataMod = [];
@@ -129,7 +139,7 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 		    accepts: 'application/json'
 		  }).success(function(response) {
 		     $scope.incomeList = response;
-		     $scope.calIncome =  $scope.totalIncome(response);
+		/*     $scope.calIncome =  $scope.totalIncome(response); */
 		     
 		}).error(function(response) {
 		     console.log("error occurred."); 
@@ -298,7 +308,6 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	}
 	
 	$scope.totalIncome = function(incomes) {
-		console.log("testing sum")
 	    var total = 0;
 	    for(var i = 0; i < incomes.length; i++){
 	        var income = incomes[i].amount;
