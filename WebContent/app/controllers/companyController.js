@@ -139,7 +139,6 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 		    accepts: 'application/json'
 		  }).success(function(response) {
 		     $scope.incomeList = response;
-		/*     $scope.calIncome =  $scope.totalIncome(response); */
 		     
 		}).error(function(response) {
 		     console.log("error occurred."); 
@@ -308,6 +307,10 @@ app.controller('companyController', ['$scope', '$http', '$location', '$mdDialog'
 	}
 	
 	$scope.totalIncome = function(incomes) {
+		if (incomes == null)
+			{
+				return null;
+			}
 	    var total = 0;
 	    for(var i = 0; i < incomes.length; i++){
 	        var income = incomes[i].amount;
