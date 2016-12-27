@@ -29,6 +29,7 @@ import com.CouponSystem.FacadeException.FacadeException;
 
 import DAOException.DAOExceptionErrorType;
 
+// All services for admin user, translate request from client (angular) to server facde code and return response
 
 @Path("/adminService")
 public class AdminService 
@@ -45,7 +46,7 @@ public class AdminService
 	}
 
 
-	
+	// View income activities for specific customer
 	@POST
 	@Path("/viewIncomeByCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -62,6 +63,7 @@ public class AdminService
 		}		
 	}
 	
+	// View income activities for specific company
 	@POST
 	@Path("/viewIncomeByCompany")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -80,6 +82,7 @@ public class AdminService
 		
 	}
 	
+	// View income activities 
 	@GET
 	@Path("/viewAllIncomes")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -96,6 +99,7 @@ public class AdminService
 		}				
 	}
 	
+	// Create new customer
 	@POST
 	@Path("/createCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -112,6 +116,7 @@ public class AdminService
 	}
 
 
+	// Delete customer
 	@DELETE
 	@Path("/removeCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -129,6 +134,7 @@ public class AdminService
 	}
 
 
+	// Update customer details
 	@PUT
 	@Path("/updateCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -145,6 +151,7 @@ public class AdminService
 		}
 	}
 
+	// Get customer by id
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getCustomer/{id}")
@@ -161,6 +168,7 @@ public class AdminService
 	}
 
 
+	// Get all customers
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllCustomer")
@@ -176,6 +184,7 @@ public class AdminService
 	}
 
 
+	// Create new company
 	@POST
 	@Path("/createCompany")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -192,6 +201,7 @@ public class AdminService
 		}
 	}
 
+	// Delete company
 
 	@DELETE
 	@Path("/removeCompany")
@@ -210,6 +220,7 @@ public class AdminService
 		}
 	}
 
+	// Update company
 	@PUT
 	@Path("/updateCompany")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -229,6 +240,7 @@ public class AdminService
 	}
 
 
+	// Get company by id
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getCompany/{id}")
@@ -243,7 +255,8 @@ public class AdminService
 		}
 	}
 
-//
+	
+	// get all companies
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllCompanies")
@@ -260,6 +273,7 @@ public class AdminService
 	}
 	
 
+	// Get all coupons
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -275,6 +289,7 @@ public class AdminService
 		}
 	}
 
+	// admin login
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/login")
@@ -300,6 +315,7 @@ public class AdminService
 							
 	}
 	
+	// admin logout
 	@POST
 	@Path("/logout")
 	public String logout()
@@ -325,6 +341,7 @@ public class AdminService
 				
 	}
 	
+	// Get admin facde object
 	private AdminFacade getFacade() throws FacadeException
 	{
 		HttpSession session = request.getSession(false);

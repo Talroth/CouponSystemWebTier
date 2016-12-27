@@ -30,6 +30,8 @@ import com.CouponSystem.FacadeException.FacadeException;
 
 import DAOException.DAOExceptionErrorType;
 
+//All services for customer user, translate request from client (angular) to server facde code and return response
+
 @Path("/customerService")
 public class CustomerService  {
 
@@ -39,6 +41,7 @@ public class CustomerService  {
 	private static final String FACADE_ATTRIBUTE  = "facadeAtt";
 	private BuisnessDelegate delgator = BuisnessDelegate.getIncomeService();
 
+	// get only specific coupon, valid coupon is one which was purchased by current customer (according to fsesion details)
 	@POST
 	@Path("/purchaseCoupon")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -59,7 +62,7 @@ public class CustomerService  {
 		}
 	}
 
-	
+	// Return all purchased coupons by current customer
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllPurchasedCoupons")
@@ -74,6 +77,7 @@ public class CustomerService  {
 		}
 	}
 
+	// Return all purchased coupons (by type) by current customer
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllPurchasedCouponsByType/{couponType}")
@@ -88,6 +92,7 @@ public class CustomerService  {
 		}
 	}
 
+	// Return all purchased coupons (by max price) by current customer
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllPurchasedCouponsByPrice/{price}")
@@ -103,6 +108,7 @@ public class CustomerService  {
 	}
 
 
+	// customer login
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/login")
@@ -124,6 +130,7 @@ public class CustomerService  {
 		}
 	}
 	
+	// Get all coupons not only purchased
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAllCoupons")
@@ -138,6 +145,7 @@ public class CustomerService  {
 		}
 	}
 
+	// get specific coupon by id
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getCoupon/{id}")
@@ -153,6 +161,7 @@ public class CustomerService  {
 		}
 	}
 
+	// customer logout
 	@POST
 	@Path("/logout")
 	public String logout()
@@ -176,6 +185,7 @@ public class CustomerService  {
 		}
 	}
 	
+	// get customer facade
 	private CustomerFacade getFacade() throws FacadeException
 	{
 		HttpSession session = request.getSession(false);

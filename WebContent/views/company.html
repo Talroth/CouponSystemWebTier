@@ -24,7 +24,7 @@
 <script src="../app/js/ng-file-upload.min.js"></script>
 
 </head>
-<body ng-app="company" ng-controller="companyController" ng-init="init()" style="background-color: #85e085;">
+<body ng-app="company" ng-controller="companyController" ng-init="init()">
     <md-toolbar class="md-hue-2" style="margin-bottom:20px">
       <div class="md-toolbar-tools">
           <md-icon md-svg-icon="../img/icons/cash-register.svg"></md-icon>
@@ -94,7 +94,7 @@
       <td md-cell>{{coupon.amount}}</td>
       <td md-cell>{{coupon.type}}</td>	
       <td md-cell>{{coupon.message}}</td>
-       <td md-cell><form name="formPrice"><input name="priceText" type="text" style="background-color: #85e085; border: 1px solid #000000;"
+       <td md-cell><form name="formPrice"><input name="priceText" type="text"  border: 1px solid #000000;"
 					  pattern="\d+(\.\d{2,2})?" ng-model="coupon.price"  /></form>
 					</td>						
 	<td md-cell><md-button class="md-raised md-primary" ng-disabled="!(dataMod[$index].status) && !(formPrice.priceText.$valid)"  ng-click="updateCoupon(coupon,$index)">Save</md-button>
